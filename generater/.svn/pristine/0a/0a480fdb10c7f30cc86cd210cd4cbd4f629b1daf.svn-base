@@ -1,0 +1,15 @@
+package com.ymhj.yas.member.dao;
+
+import com.ymhj.yjf.annotation.MyBatisRepository;
+
+/**
+ * 
+ * MemberMapper数据库操作接口类
+ * 
+ **/
+
+@MyBatisRepository
+public interface MemberDao<Member>{
+
+
+}

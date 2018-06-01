@@ -1,0 +1,13 @@
+com\ymhj\yas\generater\code\TC.class
+com\ymhj\yas\generater\pojo\Config.class
+com\ymhj\yas\generater\util\BuildUtis.class
+com\ymhj\yas\member\domain\Member.class
+com\ymhj\yas\member\dao\UserMapper.class
+com\ymhj\yas\generater\util\PropertiesConfig.class
+com\ymhj\yas\generater\util\ProcessUtils.class
+com\ymhj\yas\member\service\IMemberService.class
+com\ymhj\yas\generater\pojo\TypeModel.class
+com\ymhj\yas\generater\util\MyBatisAnnotation.class
+com\ymhj\yas\member\dao\MemberDao.class
+com\ymhj\yas\member\service\impl\MemberService.class
+com\ymhj\yas\generater\code\EntityUtil.class

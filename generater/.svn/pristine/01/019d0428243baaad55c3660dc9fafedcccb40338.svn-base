@@ -1,0 +1,26 @@
+# table settings
+mysql.db=test
+mysql.tableName=tbl_member
+
+# db settings
+db.driverName=com.mysql.jdbc.Driver
+db.url=jdbc:mysql://192.168.1.8:3306/kf_mcntong
+db.user=root
+db.pwd=123456
+
+# File OutPut Path
+file.pojo.path=
+file.mapper.path=
+file.xml.path=
+
+# main settings
+src.domainObjectName=Area
+src.package=com.ymhj.yas.pojo.area
+src.package.mapper=com.ymhj.yas.pojo.area
+
+
+
+
+
+
+ 

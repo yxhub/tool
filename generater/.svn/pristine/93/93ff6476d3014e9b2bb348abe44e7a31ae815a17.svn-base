@@ -1,0 +1,24 @@
+package com.ymhj.yas.member.service.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.ymhj.yas.member.dao.MemberDao;
+import com.ymhj.yas.member.dao.UserMapper;
+import com.ymhj.yas.member.domain.Member;
+import com.ymhj.yas.member.service.IMemberService;
+import com.ymhj.yjf.annotation.TradingDataSource;
+
+@Service("memberService")
+public class MemberService implements IMemberService {
+
+	@Autowired
+	private MemberDao<Member> memberDao;
+	@Autowired
+	private UserMapper userMapper;
+	@TradingDataSource(name = "readMemberDataSource")
+	public Member selectById(Long id) {
+		return userMapper.get(id);
+	}
+
+}

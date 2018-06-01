@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kyj.kdf.member.dao.MemberDao">
+
+	<!--实体映射-->
+	<resultMap id="memberResultMap" type="com.kyj.kdf.member.domain.Member">
+		<!---->
+		<id property="id" column="Id" />
+		<!---->
+		<result property="name" column="name" />
+		<!---->
+		<result property="age" column="age" />
+		<!---->
+		<result property="address" column="address" />
+	</resultMap>
+
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		 id,	name,	age,	address
+	</sql>
+
+	<!-- 查询（根据主键ID查询） -->
+	<select id="selectById" resultMap="memberResultMap" parameterType="java.lang.Long">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM tbl_member
+		 WHERE Id = #{Id}
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteById" parameterType="java.lang.Long">
+		 DELETE FROM tbl_member
+		 WHERE Id = #{Id}
+	</delete>
+
+	<!-- 添加 -->
+	<insert id="insert" parameterType="com.kyj.kdf.member.domain.Member">
+		 INSERT INTO tbl_member
+ 		(Id,name,age,address) 
+		 VALUES 
+ 		(#{Id},#{name},#{age},#{address}) 
+	</insert>
+
+	<!-- 添加 （匹配有值的字段）-->
+	<insert id="insertSelective" parameterType="com.kyj.kdf.member.domain.Member">
+		 INSERT INTO tbl_member
+		 <trim prefix="(" suffix=")" suffixOverrides="," >
+			<if test="Id != null">
+				 Id,
+			</if>
+			<if test="name != null">
+				 name,
+			</if>
+			<if test="age != null">
+				 age,
+			</if>
+			<if test="address != null">
+				 address,
+			</if>
+
+		 </trim>
+		 <trim prefix="values (" suffix=")" suffixOverrides="," >
+			<if test="Id!=null">
+				 #{Id},
+			</if>
+			<if test="name!=null">
+				 #{name},
+			</if>
+			<if test="age!=null">
+				 #{age},
+			</if>
+			<if test="address!=null">
+				 #{address},
+			</if>
+		 </trim>
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateByIdSelective" parameterType="com.kyj.kdf.member.domain.Member">
+		 UPDATE tbl_member
+ 		 <set> 
+			<if test="name != null">
+				 name = #{name},
+			</if>
+			<if test="age != null">
+				 age = #{age},
+			</if>
+			<if test="address != null">
+				 address = #{address},
+			</if>
+
+ 		 </set>
+		 WHERE Id = #{Id}
+	</update>
+
+	<!-- 修 改-->
+	<update id="updateById" parameterType="com.kyj.kdf.member.domain.Member">
+		 UPDATE tbl_member
+		 SET 
+			 name = #{name},
+			 age = #{age},
+			 address = #{address}
+		 WHERE Id = #{Id}
+	</update>
+
+</mapper>

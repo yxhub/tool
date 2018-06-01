@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.1.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
+		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+    <context:property-placeholder ignore-unresolvable="true" location="classpath*:application.properties"/> 
+    <context:property-placeholder ignore-unresolvable="true" location="classpath*:application-memcached.properties"/>
+    <context:property-placeholder ignore-unresolvable="true" location="classpath*:server-config.properties"/>
+    <context:property-placeholder ignore-unresolvable="true" location="classpath*:application-jdbc-img.properties"/>
+    <context:property-placeholder ignore-unresolvable="true" location="classpath*:application-jdbc-jpa.properties"/>
+    <!-- 加载消息队列配置文件 -->
+    <context:property-placeholder ignore-unresolvable="true" location="classpath*:application-queue-msg.properties"/>
+    
+    <context:annotation-config />
+	<context:component-scan base-package="com.ymhj.*" />
+    
+    
+    <bean id="userDataSource" class="com.alibaba.druid.pool.DruidDataSource">
+		<!-- <property name="driverClassName" value="com.mysql.jdbc.Driver" /> -->
+		<property name="url" value="jdbc:mysql://192.168.1.8:3306/yas-sso" /> <!-- ${readsource.jdbc.url} -->
+		<property name="username" value="root" /> <!-- ${readsource.jdbc.username} -->
+		<property name="password" value="123456" /><!-- ${readsource.jdbc.password} -->
+		<property name="filters" value="stat" />  
+    	<property name="maxActive" value="300" />  
+		<property name="maxWait" value="60000" />  
+    	<property name="initialSize" value="10" />  
+    	<property name="minIdle" value="10" />  
+    	<property name="timeBetweenEvictionRunsMillis" value="60000" />  
+    	<property name="minEvictableIdleTimeMillis" value="300000" />
+    	<property name="validationQuery" value="SELECT 'x'" />  
+    	<property name="testWhileIdle" value="true" />  
+    	<property name="testOnBorrow" value="false" />  
+    	<property name="testOnReturn" value="false" />  
+	</bean>
+    
+    
+</beans>
